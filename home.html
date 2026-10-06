@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secure Login System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>🔐 Secure Login System</h1>
+        <p>Secure registration and authentication demo.</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <div class="message">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        {% if username %}
+            <p>Welcome, <strong>{{ username }}</strong>!</p>
+            <a class="button" href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a class="button secondary" href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a class="button" href="{{ url_for('login') }}">Login</a>
+            <a class="button secondary" href="{{ url_for('register') }}">Create Account</a>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
